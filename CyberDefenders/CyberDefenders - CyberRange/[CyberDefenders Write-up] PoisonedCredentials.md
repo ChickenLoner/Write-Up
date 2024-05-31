@@ -11,7 +11,7 @@ Your organization's security team has detected a surge in suspicious network act
 
 **Tools**: Wireshark
 * * *
-First I didn't know what is NBT-NS/LLMNR poisoning and even their purposes, So i did some request and found 2 resources that I think will help reader of this write-up understand the basic concept of this kind of attack
+First I didn't know what is NBT-NS/LLMNR poisoning and even their purposes, So i did some research and found 2 resources that I think will help reader of this write-up understand the basic concept of this kind of attack
 - [Red Team Notes - LLMNR/NBT-NS Poisoning and Relay](https://dmcxblue.gitbook.io/red-team-notes/untitled-1/llmnr-nbt-ns-poisoning-and-relay)
 - [TCM Security - LLMNR Poisoning and How to Prevent It](https://tcm-sec.com/llmnr-poisoning-and-how-to-prevent-it/)
 
