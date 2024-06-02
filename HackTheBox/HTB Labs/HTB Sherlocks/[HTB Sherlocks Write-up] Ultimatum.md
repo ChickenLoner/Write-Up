@@ -68,8 +68,7 @@ I opened this file and search for "shell" which lands me with php reverse shell 
 
 >Task 7: What was the value of the $shell variable in the web shell?
 
-![671c58f6155a3bd2a570f49c91b4c3fe.png](../../../_resources/671c58f6155a3bd2a570f49c91b4c3fe.png)
-From 
+![671c58f6155a3bd2a570f49c91b4c3fe.png](../../../_resources/671c58f6155a3bd2a570f49c91b4c3fe.png) 
 ```
 'uname -a; w; id; /bin/bash -i';
 ```
