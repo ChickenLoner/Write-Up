@@ -192,7 +192,7 @@ fmosedale17a@bizjournals.com, 142303.1996053929628411706675436
 ![022903b71ea80ec1e22f9a914819ec2e.png](../../../_resources/022903b71ea80ec1e22f9a914819ec2e.png)
 We need to search just Firstname or Surname then we will have her IP address
 ```
-
+8.254.104.208
 ```
 
 >Task 7: Which of the following file extensions is not targeted by the malware? `.txt, .sql,.ppt, .pdf, .docx, .xlsx, .csv, .json, .xml`
