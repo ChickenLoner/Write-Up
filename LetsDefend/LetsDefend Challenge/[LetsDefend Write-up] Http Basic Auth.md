@@ -50,7 +50,7 @@ Lynx/2.8.7rel.1 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/0.9.8n
 
 > What is the username used for Basic Authentication?
 ```
-
+webadmin
 ```
 <div align=center>
 
