@@ -70,7 +70,7 @@ whoami
 
 * * *
 ## Summary
-
+On this challenge, we investigate log file to discover how an attacker used nikto to scan vulnerability of a website then exploited it to gaining access to the website via brute force attacks then an attacker identified a code injection vulnerability through `whoami` command. Subsequently, they attempted to exploit this vulnerability to inject code and establish persistence by adding a user to the system.
 <div align=center>
 
 ![5d711c086bb7898f5bf060f20d10276f.png](../../_resources/5d711c086bb7898f5bf060f20d10276f.png)
