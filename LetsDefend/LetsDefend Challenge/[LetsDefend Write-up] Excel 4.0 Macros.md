@@ -83,7 +83,7 @@ Doc4!BA7
 
 > Which function is used to start a process in the operating system in the document you are analyzing?
 ```
-
+exec
 ```
 
 > Which LOLBAS tool was used in the Excel 4.0 macros you analyzed? (Format: {xxxx.exe})
