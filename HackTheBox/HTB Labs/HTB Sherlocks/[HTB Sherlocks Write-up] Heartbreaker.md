@@ -55,7 +55,7 @@ This question is a little bit tricky, I spent quite some time tried to find a fi
 If you can't separate which one is Access Key ID and which one is Secret Access Key, here is an explaination from ChatGPT which already separated them for us
 
 ```
-
+AKIA52GPOBQCK73P2PXL:OFqG/yLZYaudty0Rma6arxVuHFTGQuM6St8SWySj
 ```
 
 >Task 5: When (UTC) was the malicious binary activated on the victim's workstation?
