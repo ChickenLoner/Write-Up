@@ -79,3 +79,5 @@ We will have to find any suspicious Account Name on this event log to get a flag
 leveleffect{10gg3d}
 ```
 ***
+![d1bbfea34f252c2308c5dab5796ccfdc.png](../../_resources/f638b6b3c90842f8b99dac165df45766)
+***
