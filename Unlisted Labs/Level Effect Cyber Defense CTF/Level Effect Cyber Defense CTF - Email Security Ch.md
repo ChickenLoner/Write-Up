@@ -69,3 +69,5 @@ Do not just copy an output from CyberChef to submit directly, we need to write i
 leveleffect{dont_just_copy_paste_this_into_the_box}
 ```
 ***
+![fc79cf6b874779787f382d5259f02b2c.png](../../_resources/c010fb44f7434c218c4f343013e6290e.png)
+***
