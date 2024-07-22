@@ -8,20 +8,20 @@ Last Updated: 21/07/2024 15:11
 An attacker has found a vulnerability in our web server that allows arbitrary PHP file upload in our Apache server. Suchlike, the hacker has uploaded a what seems to be like an obfuscated shell (support.php). We monitor our network 24/7 and generate logs from tcpdump (we provided the log file for the period of two minutes before we terminated the HTTP service for investigation), however, we need your help in analyzing and identifying commands the attacker wrote to understand what was compromised.
 ***
 ## Where should we start?
-![38f9637ba2f5cb373000a1d33897a254.png](../../../_resources/38f9637ba2f5cb373000a1d33897a254.png)
+![38f9637ba2f5cb373000a1d33897a254.png](../../../../_resources/38f9637ba2f5cb373000a1d33897a254.png)
 
 Lets take a look of what we have right now, we have 3 files which are
 - `19-05-21_22532255.pcap`, this should be the main file that we are going to investigate
 - `support.php` contains obfuscated php script 
-![5fce14aa0ef54e9969fb16973dd2ebd1.png](../../../_resources/5fce14aa0ef54e9969fb16973dd2ebd1.png)
+![5fce14aa0ef54e9969fb16973dd2ebd1.png](../../../../_resources/5fce14aa0ef54e9969fb16973dd2ebd1.png)
 - `to-do.txt` contains text which is the same as challenge description so we can skip this one
 
 ## Unravel obfuscated php script
-![4f74c320982c49db68ecab9dbb5c4525.png](../../../_resources/4f74c320982c49db68ecab9dbb5c4525.png)
+![4f74c320982c49db68ecab9dbb5c4525.png](../../../../_resources/4f74c320982c49db68ecab9dbb5c4525.png)
 
 Paste obfuscated php code to https://www.unphp.net/ then we will have some variables and functions restored
 
-![3bdd6be2c643d6b80764cd5b1b4e8b0f.png](../../../_resources/3bdd6be2c643d6b80764cd5b1b4e8b0f.png)
+![3bdd6be2c643d6b80764cd5b1b4e8b0f.png](../../../../_resources/3bdd6be2c643d6b80764cd5b1b4e8b0f.png)
 
 Next, we can use CyberChef "Generic Code Beautiy" recipe to beautify it and now we can carefully review what this script does
 
@@ -152,38 +152,38 @@ if __name__ == "__main__":
 ## Following the PCAP
 Now its time to dig into a pcap file and see what happened during that time
 
-![f0080dda4bfde86221b468531b6bb3f2.png](../../../_resources/f0080dda4bfde86221b468531b6bb3f2.png)
+![f0080dda4bfde86221b468531b6bb3f2.png](../../../../_resources/f0080dda4bfde86221b468531b6bb3f2.png)
 
 We can see that at the start of this pcap, an attacker used `/upload.php` to upload malicious php script to server
 
-![223c87f7b223bb1ffa70ee49dc2c33f0.png](../../../_resources/223c87f7b223bb1ffa70ee49dc2c33f0.png)
+![223c87f7b223bb1ffa70ee49dc2c33f0.png](../../../../_resources/223c87f7b223bb1ffa70ee49dc2c33f0.png)
 
 By using `http contains "support.php"`, we will have only 4 HTTP streams to investigate which are
 - HTTP stream of packet number 20
-![84e66a2d4ace7ea24e74129db21a27df.png](../../../_resources/84e66a2d4ace7ea24e74129db21a27df.png)
+![84e66a2d4ace7ea24e74129db21a27df.png](../../../../_resources/84e66a2d4ace7ea24e74129db21a27df.png)
 Threat Actor changing directory to `/var/www/html/uploads` then use `id` to display current user information which responded back with `www-data`
 - HTTP stream of packet number 426
-![3996e36925417994480253f175be59fe.png](../../../_resources/3996e36925417994480253f175be59fe.png)
+![3996e36925417994480253f175be59fe.png](../../../../_resources/3996e36925417994480253f175be59fe.png)
 Threat Actor changing directory to `/var/www/html/uploads` then uses `ls -lah /home/* 2>&1` to list all files and subdirectories in `/home/` directory which we can see that there is a password vault for KeePass in `/home/developer`
 - HTTP stream of packet number 442
-![231924849eda16dc02177a0719b1fca6.png](../../../_resources/231924849eda16dc02177a0719b1fca6.png)
+![231924849eda16dc02177a0719b1fca6.png](../../../../_resources/231924849eda16dc02177a0719b1fca6.png)
 Threat Actor changing directory to `/home/developer` and confirms that he got the right directory 
 - HTTP stream of packet number 462
-![3c0e602c3c9c3c4bf7bf39fd914ac9b7.png](../../../_resources/3c0e602c3c9c3c4bf7bf39fd914ac9b7.png)
+![3c0e602c3c9c3c4bf7bf39fd914ac9b7.png](../../../../_resources/3c0e602c3c9c3c4bf7bf39fd914ac9b7.png)
 Then threat actor finally exfiltrated KeePass password vault file in base64 format
 
-![fc963a035e83cfc04d3dbe9ad4d18d60.png](../../../_resources/fc963a035e83cfc04d3dbe9ad4d18d60.png)
+![fc963a035e83cfc04d3dbe9ad4d18d60.png](../../../../_resources/fc963a035e83cfc04d3dbe9ad4d18d60.png)
 So we know whats going on now, we just have to restore KeePass password vault file and Im doing this with CyberChef
 
-![e960dc05f2e6ff6b1383eccdb604e95b.png](../../../_resources/e960dc05f2e6ff6b1383eccdb604e95b.png)
+![e960dc05f2e6ff6b1383eccdb604e95b.png](../../../../_resources/e960dc05f2e6ff6b1383eccdb604e95b.png)
 But we could not open this file without master password or key file so we have to figure it out how to obtain either one of them first
 
 ## Breaking the vault
-![ba221efc39721e2d46f2d912349194b6.png](../../../_resources/ba221efc39721e2d46f2d912349194b6.png)
+![ba221efc39721e2d46f2d912349194b6.png](../../../../_resources/ba221efc39721e2d46f2d912349194b6.png)
 
 Luckily for us we can use `keepass2john` and `john` to bruteforcing possible password from `rockyou.txt` wordlist which we can see that we found master password to unlock password vault
 
-![56d4598ba843a564593b54307f16c11c.png](../../../_resources/56d4598ba843a564593b54307f16c11c.png)
+![56d4598ba843a564593b54307f16c11c.png](../../../../_resources/56d4598ba843a564593b54307f16c11c.png)
 
 Now we can open password vault and obtain a flag which is the password of this user 
 
@@ -192,5 +192,5 @@ Now we can open password vault and obtain a flag which is the password of this u
 HTB{pr0tect_y0_shellZ}
 ```
 
-![92a912ee61c7cb1b30bd51487bacb61f.png](../../../_resources/92a912ee61c7cb1b30bd51487bacb61f.png)
+![92a912ee61c7cb1b30bd51487bacb61f.png](../../../../_resources/92a912ee61c7cb1b30bd51487bacb61f.png)
 ***
