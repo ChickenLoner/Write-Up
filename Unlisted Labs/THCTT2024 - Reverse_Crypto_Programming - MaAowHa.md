@@ -15,7 +15,7 @@
 
 ส่วนหมวดหมู่ของ Web นั่น คุณ Pichaya Morimoto ได้ทำการเฉลยไปแล้ว จึงอยากให้ทุกท่านไปฟัง live นั้นซึ่งจะได้สาระกว่าเยอะครับ โดยสามารถเข้าไปฟังได้ที่ลิงค์นี้เลย (https://www.youtube.com/watch?v=l0MqzU4hmV0)
 
-ส่วนใครที่ผมจะอ่าน part 2 กันแล้ว lets just right in ครับ
+ส่วนใครที่พร้อมจะอ่าน part 2 กันแล้ว lets just right in ครับ
 ***
 ## Reverse Engineering/Pwnable
 ### Running Number (100)
