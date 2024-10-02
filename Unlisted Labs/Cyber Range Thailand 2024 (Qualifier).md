@@ -92,7 +92,7 @@ flag{y0u_h4v3_f0und_th3_gzipp3d_answ3r}
 ### DNS Tunnel 
 ![cdf4f7839ead4ea29ad505e8b061828d.png](../_resources/cdf4f7839ead4ea29ad505e8b061828d.png)
 
-ในข้อนี้เราจะต้อง extract flag จาก dns query ซึ่งผมเห็นแล้วก็เอ๊ะขึ้นมาทันทีเพราะว่าก่อนวันแข่งผมได้ลองเล่น HackTheBox Sherlock - Nuts ซึ่งเป็นการ investigate DNS tunneling ที่เกิดขึ้นจาก dnscat2 ซึ่งโจทย์ข้อนี้ก็เป็นแบบเดียวกันครับ (ถือว่าเก็งข้อสอบมาถูกข้อมั้ง?)
+ในข้อนี้เราจะต้อง extract flag จาก dns query ซึ่งผมเห็นแล้วก็เอ๊ะขึ้นมาทันทีเพราะว่าก่อนวันแข่งผมได้ลองเล่น HackTheBox Sherlock - Litter ซึ่งเป็นการ investigate DNS tunneling ที่เกิดขึ้นจาก dnscat2 ซึ่งโจทย์ข้อนี้ก็เป็นแบบเดียวกันครับ (ถือว่าเก็งข้อสอบมาถูกข้อมั้ง?)
 
 ![6bc769738bac318838ea2992dfb879d9.png](../_resources/6bc769738bac318838ea2992dfb879d9.png)
 
