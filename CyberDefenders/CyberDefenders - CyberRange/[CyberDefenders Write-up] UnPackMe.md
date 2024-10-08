@@ -24,9 +24,10 @@ We can see that we got PE32 executable file to work with so we can use tool like
 
 In my case, I used pestudio and it immediately caught this entropy as one of the indicator for me
 
-```
-7.389
-```
+<details>
+  <summary>Answer</summary>
+<pre><code>7.389</code></pre>
+</details>
 
 >Q2: Before 'ShadowSteal' begins its data theft, it cleverly checks for a mutex to avoid duplicative data collection. This mutex includes a unique string combined with the computer's name. What is the hardcoded string that 'ShadowSteal' uses for this purpose?
 
@@ -36,9 +37,10 @@ We can make this a little bit easier with VirusTotal which you can see that unde
 
 - by the way, the sample that we are investigating right now is the Raccoon Stealer malware
 
-```
-uiabfqwfu
-```
+<details>
+  <summary>Answer</summary>
+<pre><code>uiabfqwfu</code></pre>
+</details>
 
 >Q3: 'ShadowSteal' employs base64 and RC4 algorithms to safeguard the stolen data and its communication with the control server. Dive into its code to find the RC4 encryption key. What is it?
 
@@ -46,9 +48,10 @@ uiabfqwfu
 
 Go to "Decoded Text" and we can see `RC_key1` and `RC_key2` that match RC4 encryption key but the answer of this question is `RC_key1` 
 
-```
-$Z2s`ten\\@bE9vzR
-```
+<details>
+  <summary>Answer</summary>
+<pre><code>$Z2s`ten\\@bE9vzR</code></pre>
+</details>
 
 >Q4: In its data collection phase, 'ShadowSteal' compiles a report which, among other things, reveals its version to the attacker. This detail is crucial for our threat intelligence. What version of 'ShadowSteal' are you analyzing?
 
@@ -62,9 +65,10 @@ After we got unpacked malware, I searched its file hash on [Recorded Future Tria
 
 ![4076bded75689c31047c1aa88249fdaa.png](../../_resources/4076bded75689c31047c1aa88249fdaa.png)
 
-```
-1.7.3
-```
+<details>
+  <summary>Answer</summary>
+<pre><code>1.7.3</code></pre>
+</details>
 
 >Q5: Part of ShadowSteal's reconnaissance involves scanning for installed software, a task it accomplishes by querying a specific registry key. Identify the registry key it uses for this purpose.
 
@@ -72,9 +76,10 @@ After we got unpacked malware, I searched its file hash on [Recorded Future Tria
 
 Go back to VirusTotal and you can see that this registry key was queried by this malware and it stores information about installed applications on Windows system.
 
-```
-SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall
-```
+<details>
+  <summary>Answer</summary>
+<pre><code>SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall</code></pre>
+</details>
 
 >Q6: 'ShadowSteal' captures a screenshot of the current operating window as part of its information-gathering process. Which function address is responsible for this action?
 
@@ -86,9 +91,10 @@ First, we need to know which Windows API could be used to take a screenshot so I
 
 Which you can find most of them inside `FUN_0042951b` function (in Ghidra)
 
-```
-0042951b
-```
+<details>
+  <summary>Answer</summary>
+<pre><code>0042951b</code></pre>
+</details>
 
 >Q7: Once 'ShadowSteal' has fulfilled its mission, it removes all traces of its existence from the infected system. What command does it execute to delete itself?
 
@@ -96,9 +102,10 @@ Which you can find most of them inside `FUN_0042951b` function (in Ghidra)
 
 Go back to VirusTotal again for this one then go to process terminated or shell commands, which we can see that `cmd` was used to delete an executable file (which is itself)
 
-```
-cmd.exe /C timeout /T 10 /NOBREAK > Nul & Del /f /q
-```
+<details>
+  <summary>Answer</summary>
+<pre><code>cmd.exe /C timeout /T 10 /NOBREAK > Nul & Del /f /q</code></pre>
+</details>
 
 >Q8: For a comprehensive threat analysis, knowing where 'ShadowSteal' originates from is key. This includes the full path to its build folder on the attacker's computer. Can you provide this path?
 
@@ -106,9 +113,10 @@ cmd.exe /C timeout /T 10 /NOBREAK > Nul & Del /f /q
 
 You can search for all strings that were assigned, then you can see this suspicious path and its the one we were looking for
 
-```
-A:\_Work\rc-build-v1-exe\
-```
+<details>
+  <summary>Answer</summary>
+<pre><code>A:\_Work\rc-build-v1-exe\</code></pre>
+</details>
 
 ![5e728dc2dae769fe6e3d8926c88f62e6.png](../../_resources/5e728dc2dae769fe6e3d8926c88f62e6.png)
 * * *
