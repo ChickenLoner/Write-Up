@@ -22,26 +22,32 @@ As the lead analyst on this case, you are required to analyze the network traffi
 I opened this pcap on Wireshark
 ![6582a0deebcfa7350c4fa51f63978405.png](../../_resources/6582a0deebcfa7350c4fa51f63978405.png)
 There are a lot of HTTP conversations but I noticed this one because its a SQL injection attempt, so we got an attacker
-```
-111.224.250.131
-```
+
+<details>
+  <summary>Answer</summary>
+<pre><code>111.224.250.131</code></pre>
+</details>
 
 > Q2: If the geographical origin of an IP address is known to be from a region that has no business or expected traffic with our network, this can be an indicator of a targeted attack. Can you determine the origin city of the attacker?
 
 ![c6bbc397cce4338f6ce365a38bf69187.png](../../_resources/c6bbc397cce4338f6ce365a38bf69187.png)
 Using [IPLocation](https://www.iplocation.net/ip-lookup), I've found that this IP address is located in Hebei (China)
-```
-Shijiazhuang
-```
+
+<details>
+  <summary>Answer</summary>
+<pre><code>Shijiazhuang</code></pre>
+</details>
 
 > Q3: Identifying the exploited script allows security teams to understand exactly which vulnerability was used in the attack. This knowledge is critical for finding the appropriate patch or workaround to close the security gap and prevent future exploitation. Can you provide the vulnerable script name?
 
 ![9f003bb30421d6aa26ff6d0657c1e76e.png](../../_resources/9f003bb30421d6aa26ff6d0657c1e76e.png)
 ![30af4f518cd17e7650037e59da164977.png](../../_resources/30af4f518cd17e7650037e59da164977.png)
 We can see that this php script is likely vulnerable to SQL injection attack
-```
-search.php
-```
+
+<details>
+  <summary>Answer</summary>
+<pre><code>search.php</code></pre>
+</details>
 
 > Q4: Establishing the timeline of an attack, starting from the initial exploitation attempt, What's the complete request URI of the first SQLi attempt by the attacker?
 
@@ -51,9 +57,11 @@ I wanted to know the regular query first so If we just queried with just `book`,
 Scroll down a bit more, I saw HTTP status 200 with the same no result
 ![9b34e01b4129785b0158c4b19a7b60b7.png](../../_resources/9b34e01b4129785b0158c4b19a7b60b7.png)
 Decoded URL-encoded string, then it made sense why the result is the same as queries with `book`, because it just added `AND TRUE` statement after it.
-```
-/search.php?search=book%20and%201=1;%20--%20-
-```
+
+<details>
+  <summary>Answer</summary>
+<pre><code>/search.php?search=book%20and%201=1;%20--%20-</code></pre>
+</details>
 
 > Q5: Can you provide the complete request URI that was used to read the web server available databases?
 
@@ -62,9 +70,11 @@ question ask for the web server available database, that mean just True statemen
 ![ee0220b66f58ca50ebf6069ba9064e7b.png](../../_resources/ee0220b66f58ca50ebf6069ba9064e7b.png)
 ![a1c97dd4844cf43739491184ca1e4b95.png](../../_resources/a1c97dd4844cf43739491184ca1e4b95.png)
 So I searched `schema` string, then finally obtained the answer
-```
-/search.php?search=book%27%20UNION%20ALL%20SELECT%20NULL%2CCONCAT%280x7178766271%2CJSON_ARRAYAGG%28CONCAT_WS%280x7a76676a636b%2Cschema_name%29%29%2C0x7176706a71%29%20FROM%20INFORMATION_SCHEMA.SCHEMATA--%20-
-```
+
+<details>
+  <summary>Answer</summary>
+<pre><code>/search.php?search=book%27%20UNION%20ALL%20SELECT%20NULL%2CCONCAT%280x7178766271%2CJSON_ARRAYAGG%28CONCAT_WS%280x7a76676a636b%2Cschema_name%29%29%2C0x7176706a71%29%20FROM%20INFORMATION_SCHEMA.SCHEMATA--%20-</code></pre>
+</details>
 
 > Q6: Assessing the impact of the breach and data access is crucial, including the potential harm to the organization's reputation. What's the table name containing the website users data?
 
@@ -75,9 +85,11 @@ Attacker successfully queries all tables of `bookworld_db` database
 ![373178640bd91d687c5064120a4026ff.png](../../_resources/373178640bd91d687c5064120a4026ff.png)
 ![2b91ab0cdb15758735d7d066a68a8333.png](../../_resources/2b91ab0cdb15758735d7d066a68a8333.png)
 and the `customers` table contains information about users of this website
-```
-customers
-```
+
+<details>
+  <summary>Answer</summary>
+<pre><code>customers</code></pre>
+</details>
 
 > Q7: The website directories hidden from the public could serve as an unauthorized access point or contain sensitive functionalities not intended for public access. Can you provide name of the directory discovered by the attacker? 
 
@@ -85,17 +97,21 @@ customers
 After attacker exploited SQL injection then he/she used gobuster attempting to find directory that supposed to be hidden on this website
 ![6c9d56860384c2826076c864535ba24c.png](../../_resources/6c9d56860384c2826076c864535ba24c.png)
 Filtered by HTTP status 200, I finally found that attacker got accessed to `/admin/` directory
-```
-/admin/
-```
+
+<details>
+  <summary>Answer</summary>
+<pre><code>/admin/</code></pre>
+</details>
 
 > Q8: Knowing which credentials were used allows us to determine the extent of account compromise. What's the credentials used by the attacker for logging in?
 
 ![cab8f1a66cfa40e5a54a6016b28ea736.png](../../_resources/cab8f1a66cfa40e5a54a6016b28ea736.png)
 Knowing an attacker found `/admin/` page, I also found that login.php page and the POST request to the server mean an attacker tried to gain access to this admin page and he/she finally got accessed according to HTTP 302 then went straight to index.php
-```
-admin:admin123!
-```
+
+<details>
+  <summary>Answer</summary>
+<pre><code>admin:admin123!</code></pre>
+</details>
 
 > Q9: We need to determine if the attacker gained further access or control on our web server. What's the name of the malicious script uploaded by the attacker?
 
@@ -106,9 +122,11 @@ So I wanted to confirmed when the attacker uploaded a file and you need to look 
 ![6368eda8e24de04215840816e1a08a02.png](../../_resources/6368eda8e24de04215840816e1a08a02.png)
 ![4f1ac3e923311917c4ec0ac3778e1786.png](../../_resources/4f1ac3e923311917c4ec0ac3778e1786.png)
 which I finally confirmed that on the index.php, attacker uploaded this php reverse shell script to the webserver
-```
-NVri2vhp.php
-```
+
+<details>
+  <summary>Answer</summary>
+<pre><code>NVri2vhp.php</code></pre>
+</details>
 
 ![1a89a28ecc97569cc8cbfd880123ead2.png](../../_resources/1a89a28ecc97569cc8cbfd880123ead2.png)
 ***
