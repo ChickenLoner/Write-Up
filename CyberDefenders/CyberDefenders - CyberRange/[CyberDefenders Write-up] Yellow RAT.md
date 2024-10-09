@@ -48,7 +48,7 @@ We can go to "Names" section in "Details" tab to see other names of this file bu
 
 ![e3c1a0c9c033f85abea6aebdb3bfe621.png](../../_resources/e3c1a0c9c033f85abea6aebdb3bfe621.png)
 
-Most PE files often contains their complication timestamp in their PE header so if we keep scrolling down for a bit to "Portable Executable Info" then we will have Most PE files often contains their complication timestamp  timestamp of this file right here
+Most PE files often contains their complication timestamp in their PE header so if we keep scrolling down for a bit to "Portable Executable Info" then we will have complication timestamp of this file right here
 
 <details>
   <summary>Answer</summary>
